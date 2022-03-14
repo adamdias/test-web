@@ -8,10 +8,13 @@ export class RemoteServiceVersion implements ServiceVersion {
     private readonly httpClient: HttpClient<RemoteServiceVersion.Model[]>
   ) {}
 
-  async loadAll(): Promise<ServiceVersion.Model[]> {
+  async loadAll(
+    params: ServiceVersion.Params
+  ): Promise<ServiceVersion.Model[]> {
     const httpResponse = await this.httpClient.request({
       url: this.url,
       method: "get",
+      params,
     });
     const remoteMakes = httpResponse.body || [];
     switch (httpResponse.statusCode) {
