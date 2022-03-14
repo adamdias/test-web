@@ -17,6 +17,6 @@ export const mockRemoteServiceVersionListModel =
 
 export const mockRemoteServiceVersionParams = (): ServiceVersion.Params => {
   return {
-    MakeID: faker.datatype.number(),
+    ModelID: faker.datatype.number(),
   };
 };

@@ -4,7 +4,7 @@ export interface ServiceVersion {
 
 export namespace ServiceVersion {
   export type Params = {
-    MakeID: number;
+    ModelID: number;
   };
 
   export type Model = {
