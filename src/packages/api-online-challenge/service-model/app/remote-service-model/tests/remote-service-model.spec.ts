@@ -48,8 +48,8 @@ describe("Service model in api-online-challenge", () => {
       body: httpResult,
     };
 
-    const makeList = await sut.loadAll();
-    expect(makeList).toEqual([
+    const modelList = await sut.loadAll();
+    expect(modelList).toEqual([
       {
         MakeID: httpResult[0].MakeID,
         ID: httpResult[0].ID,
