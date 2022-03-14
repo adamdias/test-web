@@ -1,4 +1,5 @@
 import faker from "faker";
+import { ServiceModel } from "../../../core/service-model";
 import { RemoteServiceModel } from "../remote-service-model";
 
 export const mockRemoteServiceModel = (): RemoteServiceModel.Model => ({
@@ -12,3 +13,9 @@ export const mockRemoteServiceModelList = (): RemoteServiceModel.Model[] => [
   mockRemoteServiceModel(),
   mockRemoteServiceModel(),
 ];
+
+export const mockRemoteServiceModelParams = (): ServiceModel.Params => {
+  return {
+    MakeID: faker.datatype.number(),
+  };
+};
