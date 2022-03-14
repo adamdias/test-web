@@ -1,24 +1,24 @@
 import faker from "faker";
 import { UnexpectedError } from "@/packages/errors";
 import { HttpClientSpy, HttpStatusCode } from "@/packages/http-client";
-import { RemoteLoadMakeList } from "../remote-make";
-import { mockRemoteMakeListModel } from "./remote-make.mock";
+import { RemoteServiceMake } from "../remote-service-make";
+import { mockRemoteServiceMakeListModel } from "./remote-service-make.mock";
 
 type SutTypes = {
-  sut: RemoteLoadMakeList;
-  httpClientSpy: HttpClientSpy<RemoteLoadMakeList.Model[]>;
+  sut: RemoteServiceMake;
+  httpClientSpy: HttpClientSpy<RemoteServiceMake.Model[]>;
 };
 
 const makeSut = (url = faker.internet.url()): SutTypes => {
-  const httpClientSpy = new HttpClientSpy<RemoteLoadMakeList.Model[]>();
-  const sut = new RemoteLoadMakeList(url, httpClientSpy);
+  const httpClientSpy = new HttpClientSpy<RemoteServiceMake.Model[]>();
+  const sut = new RemoteServiceMake(url, httpClientSpy);
   return {
     sut,
     httpClientSpy,
   };
 };
 
-describe("ApiWebMotorsMake", () => {
+describe("Service make in api-online-challenge", () => {
   test("Should call HttpClient with correct URL and Method", async () => {
     const url = faker.internet.url();
     const { sut, httpClientSpy } = makeSut(url);
@@ -39,9 +39,9 @@ describe("ApiWebMotorsMake", () => {
     await expect(promise).rejects.toThrow(new UnexpectedError());
   });
 
-  test("Should return a list of MakeModels if HttpClient returns 200", async () => {
+  test("Should return a list of ServiceMakeModel if HttpClient returns 200", async () => {
     const { sut, httpClientSpy } = makeSut();
-    const httpResult = mockRemoteMakeListModel();
+    const httpResult = mockRemoteServiceMakeListModel();
 
     httpClientSpy.response = {
       statusCode: HttpStatusCode.ok,

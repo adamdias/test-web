@@ -1,14 +1,14 @@
 import { HttpClient, HttpStatusCode } from "@/packages/http-client";
 import { UnexpectedError } from "@/packages/errors";
-import { MakeList } from "../../core/make";
+import { ServiceMake } from "../../core/service-make";
 
-export class RemoteLoadMakeList implements MakeList {
+export class RemoteServiceMake implements ServiceMake {
   constructor(
     private readonly url: string,
-    private readonly httpClient: HttpClient<RemoteLoadMakeList.Model[]>
+    private readonly httpClient: HttpClient<RemoteServiceMake.Model[]>
   ) {}
 
-  async loadAll(): Promise<MakeList.Model[]> {
+  async loadAll(): Promise<ServiceMake.Model[]> {
     const httpResponse = await this.httpClient.request({
       url: this.url,
       method: "get",
@@ -25,6 +25,6 @@ export class RemoteLoadMakeList implements MakeList {
   }
 }
 
-export namespace RemoteLoadMakeList {
-  export type Model = MakeList.Model;
+export namespace RemoteServiceMake {
+  export type Model = ServiceMake.Model;
 }
