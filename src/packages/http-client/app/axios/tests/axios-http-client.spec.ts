@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import AxiosHttpClient from "../axios-http-client";
-import mockAxios from "./axios-http-client-mock";
+import { mockAxios } from "./axios-http-client-mock";
+import { AxiosHttpClient } from "../axios-http-client";
 import {
   mockHttpResponse,
   mockHttpRequest,
