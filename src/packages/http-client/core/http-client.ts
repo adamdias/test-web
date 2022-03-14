@@ -15,6 +15,7 @@ export type HttpRequest = {
   method: HttpMethod;
   body?: any;
   headers?: any;
+  params?: any;
 };
 
 export type HttpResponse<T = any> = {
