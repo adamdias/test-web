@@ -1,4 +1,5 @@
 import faker from "faker";
+import { ServiceVersion } from "../../../core/service-version";
 import { RemoteServiceVersion } from "../remote-service-version";
 
 export const mockRemoteServiceVersion = (): RemoteServiceVersion.Model => ({
@@ -13,3 +14,9 @@ export const mockRemoteServiceVersionListModel =
     mockRemoteServiceVersion(),
     mockRemoteServiceVersion(),
   ];
+
+export const mockRemoteServiceVersionParams = (): ServiceVersion.Params => {
+  return {
+    MakeID: faker.datatype.number(),
+  };
+};
