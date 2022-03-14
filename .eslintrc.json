@@ -36,7 +36,8 @@
     ],
     "class-methods-use-this": "off",
     "no-shadow": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-useless-constructor": "off"
   },
   "settings": {
     "import/resolver": {
