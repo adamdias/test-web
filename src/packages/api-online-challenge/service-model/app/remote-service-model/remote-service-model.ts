@@ -1,0 +1,30 @@
+import { HttpClient, HttpStatusCode } from "@/packages/http-client";
+import { UnexpectedError } from "@/packages/errors";
+import { ServiceModel } from "../../core/service-model";
+
+export class RemoteServiceModel implements ServiceModel {
+  constructor(
+    private readonly url: string,
+    private readonly httpClient: HttpClient<RemoteServiceModel.Model[]>
+  ) {}
+
+  async loadAll(): Promise<ServiceModel.Model[]> {
+    const httpResponse = await this.httpClient.request({
+      url: this.url,
+      method: "get",
+    });
+    const remoteMakes = httpResponse.body || [];
+    switch (httpResponse.statusCode) {
+      case HttpStatusCode.ok:
+        return remoteMakes.map(remoteMake => ({
+          ...remoteMake,
+        }));
+      default:
+        throw new UnexpectedError();
+    }
+  }
+}
+
+export namespace RemoteServiceModel {
+  export type Model = ServiceModel.Model;
+}
