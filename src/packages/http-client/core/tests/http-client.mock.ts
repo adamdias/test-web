@@ -4,7 +4,7 @@ import {
   HttpRequest,
   HttpResponse,
   HttpStatusCode,
-} from "./http-client.type";
+} from "../http-client";
 
 export const mockHttpResponse = (): any => ({
   data: faker.random.objectElement(),
