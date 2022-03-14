@@ -30,6 +30,7 @@ describe("Service version in api-online-challenge", () => {
     await sut.loadAll(remoteServiceVersionParams);
     expect(httpClientSpy.url).toBe(url);
     expect(httpClientSpy.method).toBe("get");
+    expect(httpClientSpy.params).toBe(remoteServiceVersionParams);
   });
 
   test("Should throw UnexpectedError if HttpClient returns 500", async () => {
