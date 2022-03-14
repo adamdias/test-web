@@ -8,10 +8,11 @@ export class RemoteServiceModel implements ServiceModel {
     private readonly httpClient: HttpClient<RemoteServiceModel.Model[]>
   ) {}
 
-  async loadAll(): Promise<ServiceModel.Model[]> {
+  async loadAll(params: ServiceModel.Params): Promise<ServiceModel.Model[]> {
     const httpResponse = await this.httpClient.request({
       url: this.url,
       method: "get",
+      params,
     });
     const remoteMakes = httpResponse.body || [];
     switch (httpResponse.statusCode) {
