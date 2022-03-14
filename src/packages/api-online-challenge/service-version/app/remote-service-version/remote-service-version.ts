@@ -16,11 +16,11 @@ export class RemoteServiceVersion implements ServiceVersion {
       method: "get",
       params,
     });
-    const remoteMakes = httpResponse.body || [];
+    const remoteVersions = httpResponse.body || [];
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return remoteMakes.map(remoteMake => ({
-          ...remoteMake,
+        return remoteVersions.map(remoteVersion => ({
+          ...remoteVersion,
         }));
       default:
         throw new UnexpectedError();

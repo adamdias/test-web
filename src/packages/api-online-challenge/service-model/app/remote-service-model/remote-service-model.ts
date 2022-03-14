@@ -14,11 +14,11 @@ export class RemoteServiceModel implements ServiceModel {
       method: "get",
       params,
     });
-    const remoteMakes = httpResponse.body || [];
+    const remoteModels = httpResponse.body || [];
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
-        return remoteMakes.map(remoteMake => ({
-          ...remoteMake,
+        return remoteModels.map(remoteModel => ({
+          ...remoteModel,
         }));
       default:
         throw new UnexpectedError();
