@@ -19,6 +19,7 @@
   "devDependencies": {
     "@babel/core": "^7.17.7",
     "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-docs": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
     "@storybook/addon-links": "^6.4.19",
@@ -58,6 +59,7 @@
     "node-sass": "^6.0.1",
     "prettier": "^2.5.1",
     "sass-loader": "^12.1.0",
+    "storybook-addon-react-docgen": "^1.2.42",
     "storybook-addon-sass-postcss": "^0.1.0",
     "style-loader": "^3.2.1",
     "ts-jest": "^27.1.3",
