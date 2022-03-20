@@ -1,7 +1,7 @@
 import React from "react";
-import { IconSvgProps } from "../icon.types";
+import { IconProps } from "../icon.types";
 
-const CarIcon = ({ width, height, color }: IconSvgProps) => {
+const CarIcon = ({ width, height, color }: IconProps) => {
   return (
     <div style={{ width, height }}>
       <svg

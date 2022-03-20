@@ -1,8 +1,8 @@
 import React from "react";
 import CarIcon from "../car/car";
-import { IconProps } from "../icon.types";
+import { GetIconByNameProps } from "./get-icon-by-name.types";
 
-const GetIconByName = ({ name, width, height, color }: IconProps) => {
+const GetIconByName = ({ name, width, height, color }: GetIconByNameProps) => {
   let iconSelected;
 
   switch (name) {

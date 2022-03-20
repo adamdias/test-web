@@ -1,9 +1,5 @@
-export type IconSvgProps = {
+export type IconProps = {
   width: number;
   height: number;
   color: string;
 };
-
-export type IconProps = {
-  name: "car";
-} & IconSvgProps;
