@@ -1,6 +1,7 @@
 import React from "react";
 import { CarIcon } from "../car";
 import { LocationPinIcon } from "../location-pin";
+import { CloseIcon } from "../close";
 import { GetIconByNameProps } from ".";
 
 const GetIconByName = ({ name, width, height, color }: GetIconByNameProps) => {
@@ -15,6 +16,10 @@ const GetIconByName = ({ name, width, height, color }: GetIconByNameProps) => {
       iconSelected = (
         <LocationPinIcon width={width} height={height} color={color} />
       );
+      break;
+
+    case "close":
+      iconSelected = <CloseIcon width={width} height={height} color={color} />;
       break;
 
     default:

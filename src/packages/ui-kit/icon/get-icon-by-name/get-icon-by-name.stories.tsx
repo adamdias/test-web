@@ -24,5 +24,5 @@ GetIconByName.args = {
   width: 35,
   height: 35,
   color: "#c41333",
-  name: "car",
+  name: "close",
 };
