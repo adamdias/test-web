@@ -52,19 +52,19 @@ Error.args = {
   onBlur: () => console.log("blur"),
 };
 
-export const WithIcon = Template.bind({});
+export const WithIcons = Template.bind({});
 
-WithIcon.args = {
-  label: "Nome:",
-  name: "nome",
+WithIcons.args = {
+  label: "Onde:",
+  name: "location",
   type: "text",
   leftIcon: {
-    name: "car",
+    name: "location-pin",
     color: "#c41333",
   },
   rightIcon: {
-    name: "car",
-    color: "#c41333",
+    name: "close",
+    color: "#acacac",
   },
   onFocus: () => console.log("focus"),
   onBlur: () => console.log("blur"),

@@ -41,8 +41,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <div className="input_icon input_icon--left">
                 <GetIconByName
                   name={leftIcon.name}
-                  width={25}
-                  height={25}
+                  width={16}
+                  height={16}
                   color={leftIcon.color}
                 />
               </div>
@@ -64,8 +64,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <div className="input_icon input_icon--right">
               <GetIconByName
                 name={rightIcon.name}
-                width={25}
-                height={25}
+                width={16}
+                height={16}
                 color={rightIcon.color}
               />
             </div>
