@@ -2,7 +2,7 @@ import React from "react";
 
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import CarIcon from "./car";
+import { CarIcon } from ".";
 import { IconProps } from "../icon.types";
 
 export default {

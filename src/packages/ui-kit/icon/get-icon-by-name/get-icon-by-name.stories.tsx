@@ -2,26 +2,25 @@ import React from "react";
 
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
-import GetIconByNameAlias from "./get-icon-by-name";
-import { GetIconByNameProps } from "./get-icon-by-name.types";
+import { GetIconByName, GetIconByNameProps } from ".";
 
 export default {
   title: "Icons/Get Icon By Name",
-  component: GetIconByNameAlias,
-} as ComponentMeta<typeof GetIconByNameAlias>;
+  component: GetIconByName,
+} as ComponentMeta<typeof GetIconByName>;
 
-const GetIconByNameTemplate: ComponentStory<typeof GetIconByNameAlias> = ({
+const GetIconByNameTemplate: ComponentStory<typeof GetIconByName> = ({
   width,
   height,
   color,
   name,
 }: GetIconByNameProps) => (
-  <GetIconByNameAlias name={name} width={width} height={height} color={color} />
+  <GetIconByName name={name} width={width} height={height} color={color} />
 );
 
-export const GetIconByName = GetIconByNameTemplate.bind({});
+export const GetIconByNameBind = GetIconByNameTemplate.bind({});
 
-GetIconByName.args = {
+GetIconByNameBind.args = {
   width: 35,
   height: 35,
   color: "#c41333",
