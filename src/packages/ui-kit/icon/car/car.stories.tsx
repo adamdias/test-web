@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 import CarIcon from "./car";
-import { IconSvgProps } from "../icon.types";
+import { IconProps } from "../icon.types";
 
 export default {
   title: "Icons/Car",
@@ -14,7 +14,7 @@ const CarIconTemplate: ComponentStory<typeof CarIcon> = ({
   width,
   height,
   color,
-}: IconSvgProps) => <CarIcon width={width} height={height} color={color} />;
+}: IconProps) => <CarIcon width={width} height={height} color={color} />;
 
 export const Car = CarIconTemplate.bind({});
 

@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 import GetIconByNameAlias from "./get-icon-by-name";
-import { IconProps } from "../icon.types";
+import { GetIconByNameProps } from "./get-icon-by-name.types";
 
 export default {
   title: "Icons/Get Icon By Name",
@@ -15,7 +15,7 @@ const GetIconByNameTemplate: ComponentStory<typeof GetIconByNameAlias> = ({
   height,
   color,
   name,
-}: IconProps) => (
+}: GetIconByNameProps) => (
   <GetIconByNameAlias name={name} width={width} height={height} color={color} />
 );
 
