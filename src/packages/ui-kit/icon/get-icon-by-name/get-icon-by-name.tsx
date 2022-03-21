@@ -1,6 +1,7 @@
 import React from "react";
-import CarIcon from "../car/car";
-import { GetIconByNameProps } from "./get-icon-by-name.types";
+import { CarIcon } from "../car";
+import { LocationPinIcon } from "../location-pin";
+import { GetIconByNameProps } from ".";
 
 const GetIconByName = ({ name, width, height, color }: GetIconByNameProps) => {
   let iconSelected;
@@ -8,6 +9,12 @@ const GetIconByName = ({ name, width, height, color }: GetIconByNameProps) => {
   switch (name) {
     case "car":
       iconSelected = <CarIcon width={width} height={height} color={color} />;
+      break;
+
+    case "location-pin":
+      iconSelected = (
+        <LocationPinIcon width={width} height={height} color={color} />
+      );
       break;
 
     default:
