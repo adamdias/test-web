@@ -1,0 +1,19 @@
+.select {
+  &__label {
+    position: relative;
+  }
+
+  &__field {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+  }
+
+  &__icon {
+    position: absolute;
+    right: 2rem;
+    top: 1.9rem;
+  }
+}
