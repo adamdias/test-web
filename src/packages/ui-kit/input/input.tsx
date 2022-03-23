@@ -30,15 +30,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       [onBlur]
     );
 
-    const focusedCssClass = focused ? " input_box--focused" : "";
-    const errorCssClass = error ? " input_box--error" : "";
+    const focusedCssClass = focused ? " input__box--focused" : "";
+    const errorCssClass = error ? " input__box--error" : "";
 
     return (
-      <label className="input_label" htmlFor={name}>
-        <div className={`input_box${focusedCssClass}${errorCssClass}`}>
-          <div className="input_box--left-side">
+      <label className="input__label" htmlFor={name}>
+        <div className={`input__box${focusedCssClass}${errorCssClass}`}>
+          <div className="input__box--left-side">
             {leftIcon && leftIcon.color && leftIcon.name && (
-              <div className="input_icon input_icon--left">
+              <div className="input__icon input__icon--left">
                 <GetIconByName
                   name={leftIcon.name}
                   width={16}
@@ -52,7 +52,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
           <input
             id={name}
-            className="input_field"
+            className="input__field"
             type={type}
             name={name}
             ref={ref}
@@ -61,7 +61,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
 
           {rightIcon && rightIcon.color && rightIcon.name && (
-            <div className="input_icon input_icon--right">
+            <div className="input__icon input__icon--right">
               <GetIconByName
                 name={rightIcon.name}
                 width={16}
@@ -72,7 +72,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
 
-        {error && <span className="input_error text--lg">{error}</span>}
+        {error && <span className="input__error text--lg">{error}</span>}
       </label>
     );
   }
