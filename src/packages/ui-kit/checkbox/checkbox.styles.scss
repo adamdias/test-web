@@ -1,0 +1,53 @@
+@import "../global/color.scss";
+
+.checkbox {
+  &__label {
+    display: flex;
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover .checkbox__field ~ .checkbox__mark {
+      border-color: $red;
+    }
+
+    & .checkbox__field:checked ~ .checkbox__mark:after {
+      display: block;
+    }
+  }
+
+  &__field {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+  }
+
+  &__mark {
+    height: 1.8rem;
+    width: 1.8rem;
+    border: 0.1rem solid $gray;
+    border-radius: 0.2rem;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+
+    &:after {
+      content: "";
+      display: none;
+      width: 0.5rem;
+      height: 1rem;
+      margin-top: 0.2rem;
+      border: solid $red;
+      border-width: 0 0.2rem 0.2rem 0;
+      -webkit-transform: rotate(55deg);
+      -ms-transform: rotate(55deg);
+      transform: rotate(55deg);
+    }
+  }
+
+  &__title {
+    margin-left: 0.8rem;
+  }
+}
