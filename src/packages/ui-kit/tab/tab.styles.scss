@@ -1,0 +1,33 @@
+@import "../global/color.scss";
+
+.tab {
+  display: flex;
+
+  &__option {
+    border: 0;
+    outline: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.2rem solid $gray;
+    padding: 1rem 2rem;
+
+    &--active {
+      border-bottom: 0.4rem solid $red;
+    }
+
+    &-icon {
+      margin-right: 2rem;
+    }
+
+    &-label {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    &-subtitle {
+      color: $red;
+    }
+  }
+}
