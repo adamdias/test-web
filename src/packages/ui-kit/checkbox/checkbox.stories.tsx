@@ -20,3 +20,11 @@ Normal.args = {
   label: "Novos",
   name: "state",
 };
+
+export const Checked = Template.bind({});
+
+Checked.args = {
+  label: "Novos",
+  name: "state",
+  checked: true,
+};

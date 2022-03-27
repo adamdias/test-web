@@ -4,7 +4,7 @@ import { CheckboxProps } from "./checkbox.types";
 import "./checkbox.styles.scss";
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, name }, ref) => {
+  ({ label, name, checked }, ref) => {
     return (
       <label className="checkbox__label" htmlFor={name}>
         <input
@@ -13,6 +13,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           className="checkbox__field"
           type="checkbox"
           name={name}
+          checked={checked}
         />
         <span className="checkbox__mark" />
         <span className="checkbox__title">{label}</span>
