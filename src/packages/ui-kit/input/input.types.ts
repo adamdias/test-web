@@ -14,6 +14,9 @@ export type InputProps = {
     name: IconNameProps;
     color: string;
   };
-  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
-  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  state?: any;
+  setState?: any;
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 };

@@ -5,18 +5,47 @@ import { InputProps } from "./input.types";
 import "./input.styles.scss";
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, name, type, error, onBlur, onFocus, leftIcon, rightIcon }, ref) => {
+  (
+    {
+      label,
+      name,
+      type,
+      error,
+      onBlur,
+      onFocus,
+      onChange,
+      state,
+      setState,
+      leftIcon,
+      rightIcon,
+    },
+    ref
+  ) => {
     const [focused, setFocused] = useState<boolean>(false);
 
     const handleOnFocus = useCallback(
       (event: React.FocusEvent<HTMLInputElement>) => {
         setFocused(true);
+        event.target.readOnly = false;
 
         if (onFocus) {
           onFocus(event);
         }
       },
       [onFocus]
+    );
+
+    const handleOnChange = useCallback(
+      (event: React.FocusEvent<HTMLInputElement>) => {
+        if (state && setState) {
+          setState({ ...state, [event.target.name]: event.target.value });
+        }
+
+        if (onChange) {
+          onChange(event);
+        }
+      },
+      [onChange]
     );
 
     const handleOnBlur = useCallback(
@@ -58,6 +87,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
+            onChange={handleOnChange}
           />
 
           {rightIcon && rightIcon.color && rightIcon.name && (
