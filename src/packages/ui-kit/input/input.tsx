@@ -36,9 +36,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
 
     const handleOnChange = useCallback(
-      (event: React.FocusEvent<HTMLInputElement>) => {
+      (event: React.FormEvent<HTMLInputElement>) => {
         if (state && setState) {
-          setState({ ...state, [event.target.name]: event.target.value });
+          setState({
+            ...state,
+            [event.currentTarget.name]: event.currentTarget.value,
+          });
         }
 
         if (onChange) {

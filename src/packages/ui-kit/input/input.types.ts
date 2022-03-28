@@ -17,6 +17,6 @@ export type InputProps = {
   state?: any;
   setState?: any;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  onChange?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 };
