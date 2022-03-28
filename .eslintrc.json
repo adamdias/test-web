@@ -44,7 +44,8 @@
     "react/function-component-definition": "off",
     "react/prop-types": "off",
     "consistent-return": "off",
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "no-param-reassign": "off"
   },
   "settings": {
     "import/resolver": {
