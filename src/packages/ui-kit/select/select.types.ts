@@ -3,6 +3,6 @@ export type SelectProps = {
   name: string;
   error?: string;
   options: { label: string; value: string | number; selected?: boolean }[];
-  state: any;
-  setState: any;
+  state?: any;
+  setState?: any;
 };
