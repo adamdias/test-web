@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { SelectProps } from "./select.types";
 import { ArrowDownIcon } from "../icon/arrow-down";
 
@@ -6,7 +6,7 @@ import "../input/input.styles.scss";
 import "./select.styles.scss";
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, name, error, options }, ref) => {
+  ({ label, name, error, options, state, setState }, ref) => {
     const errorCssClass = error ? " input__box--error" : "";
 
     return (
@@ -21,6 +21,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             id={name}
             name={name}
             className="select__field input__field"
+            onChange={e => {
+              if (state && setState) {
+                setState({ ...state, [e.target.name]: e.target.value });
+              }
+            }}
           >
             {options.map(option => (
               <option value={option.value} selected={option.selected}>
