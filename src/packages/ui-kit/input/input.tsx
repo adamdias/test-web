@@ -88,6 +88,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type={type}
             name={name}
             ref={ref}
+            readOnly
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             onChange={handleOnChange}
