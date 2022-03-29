@@ -60,17 +60,17 @@ describe("Service model in api-online-challenge", () => {
       {
         MakeID: httpResult[0].MakeID,
         ID: httpResult[0].ID,
-        name: httpResult[0].name,
+        Name: httpResult[0].Name,
       },
       {
         MakeID: httpResult[1].MakeID,
         ID: httpResult[1].ID,
-        name: httpResult[1].name,
+        Name: httpResult[1].Name,
       },
       {
         MakeID: httpResult[2].MakeID,
         ID: httpResult[2].ID,
-        name: httpResult[2].name,
+        Name: httpResult[2].Name,
       },
     ]);
   });

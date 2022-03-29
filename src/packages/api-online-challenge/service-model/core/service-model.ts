@@ -10,6 +10,6 @@ export namespace ServiceModel {
   export type Model = {
     MakeID: number;
     ID: number;
-    name: string;
+    Name: string;
   };
 }
