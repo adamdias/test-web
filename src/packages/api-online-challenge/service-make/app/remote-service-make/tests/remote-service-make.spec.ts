@@ -52,15 +52,15 @@ describe("Service make in api-online-challenge", () => {
     expect(makeList).toEqual([
       {
         ID: httpResult[0].ID,
-        name: httpResult[0].name,
+        Name: httpResult[0].Name,
       },
       {
         ID: httpResult[1].ID,
-        name: httpResult[1].name,
+        Name: httpResult[1].Name,
       },
       {
         ID: httpResult[2].ID,
-        name: httpResult[2].name,
+        Name: httpResult[2].Name,
       },
     ]);
   });

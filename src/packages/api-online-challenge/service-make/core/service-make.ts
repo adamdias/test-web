@@ -5,6 +5,6 @@ export interface ServiceMake {
 export namespace ServiceMake {
   export type Model = {
     ID: number;
-    name: string;
+    Name: string;
   };
 }

@@ -1,1 +1,1 @@
-export * from "./remote-service-make";
+export * from "./remote-service-make.factories";
