@@ -60,17 +60,17 @@ describe("Service version in api-online-challenge", () => {
       {
         ModelID: httpResult[0].ModelID,
         ID: httpResult[0].ID,
-        name: httpResult[0].name,
+        Name: httpResult[0].Name,
       },
       {
         ModelID: httpResult[1].ModelID,
         ID: httpResult[1].ID,
-        name: httpResult[1].name,
+        Name: httpResult[1].Name,
       },
       {
         ModelID: httpResult[2].ModelID,
         ID: httpResult[2].ID,
-        name: httpResult[2].name,
+        Name: httpResult[2].Name,
       },
     ]);
   });
