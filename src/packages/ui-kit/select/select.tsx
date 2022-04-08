@@ -6,7 +6,17 @@ import "./select.styles.scss";
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   (
-    { label, name, error, loading, disabled = false, options, state, setState },
+    {
+      label,
+      name,
+      error,
+      loading,
+      defaultValue,
+      disabled = false,
+      options,
+      state,
+      setState,
+    },
     ref
   ) => {
     const errorCssClass = error ? " input__box--error" : "";
@@ -35,13 +45,13 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
                   setState({ ...state, [e.target.name]: e.target.value });
                 }
               }}
+              defaultValue={defaultValue}
               disabled={disabled}
             >
               {options.map(option => (
                 <option
                   key={`${option.label}${option.value}`}
                   value={option.value}
-                  selected={option.selected}
                 >
                   {option.label}
                 </option>
