@@ -4,5 +4,5 @@ export type ButtonProps = {
   title: string;
   type: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   cssType: "primary" | "outline";
-  onClick: (event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };
