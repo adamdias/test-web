@@ -3,9 +3,13 @@ import { ButtonProps } from ".";
 
 import "./button.styles.scss";
 
-const Button = ({ title, type, onClick }: ButtonProps) => {
+const Button = ({ title, type = "button", cssType, onClick }: ButtonProps) => {
   return (
-    <button type="button" className={`button button-${type}`} onClick={onClick}>
+    <button
+      type={type}
+      className={`button button-${cssType}`}
+      onClick={onClick}
+    >
       <span className="font--bold">{title}</span>
     </button>
   );
