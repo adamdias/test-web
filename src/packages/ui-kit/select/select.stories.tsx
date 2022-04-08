@@ -12,10 +12,17 @@ export default {
 const Template: ComponentStory<typeof Select> = ({
   label,
   name,
+  defaultValue,
   error,
   options,
 }: SelectProps) => (
-  <Select label={label} name={name} error={error} options={options} />
+  <Select
+    label={label}
+    defaultValue={defaultValue}
+    name={name}
+    error={error}
+    options={options}
+  />
 );
 
 export const Normal = Template.bind({});
@@ -23,6 +30,7 @@ export const Normal = Template.bind({});
 Normal.args = {
   label: "Ano desejado:",
   name: "year",
+  defaultValue: "quatro",
   options: [
     {
       label: "Item 1",
@@ -39,7 +47,6 @@ Normal.args = {
     {
       label: "Item 4",
       value: "quatro",
-      selected: true,
     },
   ],
 };
@@ -50,6 +57,7 @@ Error.args = {
   label: "Nome:",
   name: "nome",
   error: "Esse campo é obrigatório",
+  defaultValue: 2,
   options: [
     {
       label: "Item 1",
@@ -66,7 +74,6 @@ Error.args = {
     {
       label: "Item 4",
       value: "quatro",
-      selected: true,
     },
   ],
 };
