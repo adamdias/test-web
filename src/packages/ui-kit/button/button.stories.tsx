@@ -11,15 +11,18 @@ export default {
 
 const Template: ComponentStory<typeof Button> = ({
   title,
+  cssType,
   type,
   onClick,
-}: ButtonProps) => <Button title={title} type={type} onClick={onClick} />;
+}: ButtonProps) => (
+  <Button title={title} type={type} cssType={cssType} onClick={onClick} />
+);
 
 export const Primary = Template.bind({});
 
 Primary.args = {
   title: "Título do botão",
-  type: "primary",
+  cssType: "primary",
   onClick: () => console.log("oi"),
 };
 
@@ -27,6 +30,6 @@ export const Outline = Template.bind({});
 
 Outline.args = {
   title: "Título do botão",
-  type: "outline",
+  cssType: "outline",
   onClick: () => console.log("oi"),
 };
