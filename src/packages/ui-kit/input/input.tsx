@@ -48,7 +48,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onChange(event);
         }
       },
-      [onChange]
+      [onChange, state]
     );
 
     const handleOnBlur = useCallback(
