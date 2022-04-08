@@ -45,7 +45,8 @@
     "react/prop-types": "off",
     "consistent-return": "off",
     "no-restricted-syntax": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-nested-ternary": "off"
   },
   "settings": {
     "import/resolver": {
