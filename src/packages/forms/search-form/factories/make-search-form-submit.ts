@@ -9,7 +9,7 @@ interface Params {
       | ((currVal: SearchFormState) => SearchFormState)
   ) => void;
   state: SearchFormState;
-  validate: (field: string, onSubmit: boolean) => void;
+  validate: (field: string, errorIsVisible: boolean) => void;
   loadServiceVehicles: ServiceVehicles;
 }
 
@@ -23,10 +23,9 @@ export const makeSearchFormSubmit = async ({
   try {
     event.preventDefault();
 
-    validate("location", true);
-    validate("km", true);
-
     if (state.isFormInvalid) {
+      validate("location", true);
+      validate("km", true);
       return;
     }
 

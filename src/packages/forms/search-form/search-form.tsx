@@ -27,8 +27,8 @@ const SearchForm = ({
   const [state, setState] = useRecoilState(searchFormState);
 
   const handleValidate = useCallback(
-    (field: string, onSubmit = false): void =>
-      makeSearchFormValidate({ setState, state, field, onSubmit }),
+    (field: string, errorIsVisible = false): void =>
+      makeSearchFormValidate({ setState, state, field, errorIsVisible }),
     [state]
   );
 
@@ -39,20 +39,28 @@ const SearchForm = ({
 
   const handleLoadServiceModel = useCallback(
     () => makeRemoteServiceModel({ setState, state, loadServiceModel }),
-    [state.make]
+    [state]
   );
 
   const handleLoadServiceVersion = useCallback(
     () => makeRemoteServiceVersion({ setState, state, loadServiceVersion }),
-    [state.model]
+    [state]
   );
+
+  const handleClearInputLocation = useCallback(() => {
+    handleValidate("location", true);
+    setState({
+      ...state,
+      location: { ...state.location, value: "" },
+    });
+  }, [state]);
 
   const handleSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) =>
       makeSearchFormSubmit({
         event,
-        validate: handleValidate,
         state,
+        validate: handleValidate,
         setState,
         loadServiceVehicles,
       }),
@@ -76,8 +84,8 @@ const SearchForm = ({
     }
   }, [state.model]);
 
-  useEffect(() => handleValidate("location"), [state.location]);
-  useEffect(() => handleValidate("km"), [state.km]);
+  useEffect(() => handleValidate("location"), [state.location.value]);
+  useEffect(() => handleValidate("km"), [state.km.value]);
 
   return (
     <form
@@ -114,7 +122,8 @@ const SearchForm = ({
               label="Onde:"
               name="location"
               type="text"
-              error={state.locationError}
+              value={state.location.value}
+              error={state.location.errorIsVisible && state.location.error}
               leftIcon={{
                 name: "location-pin",
                 color: "#c41333",
@@ -122,9 +131,13 @@ const SearchForm = ({
               rightIcon={{
                 name: "close",
                 color: "#acacac",
+                cursorPointer: true,
+                onClick: handleClearInputLocation,
               }}
+              onBlur={() => handleValidate("location", true)}
               state={state}
               setState={setState}
+              withoutBorderRadiusRight
             />
           </div>
 
@@ -132,11 +145,12 @@ const SearchForm = ({
             <Select
               label="Raio:"
               name="km"
-              error={state.kmError}
+              error={state.km.error}
               state={state}
               setState={setState}
               defaultValue={25}
               options={selectKmMock}
+              withoutBorderRadiusLeft
             />
           </div>
         </div>

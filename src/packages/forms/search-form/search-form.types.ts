@@ -30,12 +30,16 @@ export type SearchFormState = {
   isFormInvalid: boolean;
   newState: boolean;
   usedState: boolean;
-  location: string;
-  locationError: string;
-  locationErrorOnLoad: string;
-  km: string;
-  kmError: string;
-  kmErrorOnLoad: string;
+  location: {
+    value: string;
+    errorIsVisible: boolean;
+    error: string;
+  };
+  km: {
+    value: string;
+    errorIsVisible: boolean;
+    error: string;
+  };
   year: string;
   price: string;
   make: string;

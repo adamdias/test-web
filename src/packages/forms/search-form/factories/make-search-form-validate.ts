@@ -12,7 +12,7 @@ interface Params {
   ) => void;
   state: SearchFormState;
   field: string;
-  onSubmit: boolean;
+  errorIsVisible: boolean;
 }
 
 const makeSearchFormValidator = (): ValidatorComposite =>
@@ -25,26 +25,24 @@ export const makeSearchFormValidate = ({
   setState,
   state,
   field,
-  onSubmit,
+  errorIsVisible,
 }: Params): void => {
   const validator = makeSearchFormValidator();
   const { location, km } = state;
-  const formData = { location, km };
-
+  const formData = { location: location.value, km: km.value };
   const fieldError = validator.validate(field, formData);
 
-  setState(old => ({
-    ...old,
-    [`${field}Error`]: onSubmit
-      ? fieldError
-      : state[field] !== undefined
-      ? fieldError
-      : undefined,
-    [`${field}ErrorOnLoad`]: fieldError,
-  }));
+  setState({
+    ...state,
+    [`${field}`]: {
+      ...state[`${field}`],
+      error: fieldError || "",
+      errorIsVisible: state[`${field}`].errorIsVisible || errorIsVisible,
+    },
+  });
 
   setState(old => ({
     ...old,
-    isFormInvalid: !!old.locationErrorOnLoad || !!old.kmErrorOnLoad,
+    isFormInvalid: !!old.location.error || !!old.km.error,
   }));
 };
