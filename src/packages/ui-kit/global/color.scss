@@ -3,6 +3,7 @@ $black: #000;
 $red: #c41333;
 $red-opacity: rgba(196, 19, 51, 0.8);
 $gray: #acacac;
+$gray-opactity: rgba(172, 172, 172, 0.2);
 $gray-light: #f1f1f1;
 $orange: #e89847;
 $orange-opacity: rgba(232, 152, 71, 0.8);
@@ -10,5 +11,11 @@ $orange-opacity: rgba(232, 152, 71, 0.8);
 .cl {
   &--red {
     color: $red;
+  }
+}
+
+.bg {
+  &--white {
+    background-color: $white;
   }
 }
