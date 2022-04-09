@@ -2,7 +2,15 @@
 
 Projeto criado para realizar o teste técnico da vaga de frontend senior da empresa Webmotors
 
-# Tecnologias utilizadas
+## Instalar as dependencias
+
+`yarn`
+
+## Executar em ambiente de desenvolvimento
+
+`yarn dev`
+
+## Tecnologias utilizadas
 
 - React
 - Typescript
@@ -17,7 +25,7 @@ Projeto criado para realizar o teste técnico da vaga de frontend senior da empr
 - Lint staged
 - Husky
 
-# Padrões
+## Padrões
 
 - SOLID
 - Small commits
@@ -25,11 +33,3 @@ Projeto criado para realizar o teste técnico da vaga de frontend senior da empr
 - Clean architeture
 - TDD
 - DDD
-
-# Instalar as dependencias
-
-`yarn`
-
-# Executar em ambiente de desenvolvimento
-
-`yarn dev`
