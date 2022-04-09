@@ -36,7 +36,7 @@ Outline.args = {
 
 export const Link = Template.bind({});
 
-Outline.args = {
+Link.args = {
   title: "Título do botão",
   cssType: "link",
   onClick: () => console.log("oi"),
