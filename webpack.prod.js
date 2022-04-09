@@ -1,3 +1,4 @@
+const path = require("path");
 const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -7,6 +8,11 @@ const common = require("./webpack.common");
 
 module.exports = merge(common, {
   mode: "production",
+  output: {
+    path: path.join(__dirname, "dist"),
+    filename: "main-bundle-[chunkhash].js",
+    publicPath: "/test-web/",
+  },
   module: {
     rules: [
       {

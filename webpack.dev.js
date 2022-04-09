@@ -1,3 +1,4 @@
+const path = require("path");
 const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackFavicons = require("webpack-favicons");
@@ -6,6 +7,11 @@ const common = require("./webpack.common");
 
 module.exports = merge(common, {
   mode: "development",
+  output: {
+    path: path.join(__dirname, "dist"),
+    filename: "main-bundle-[chunkhash].js",
+    publicPath: "/",
+  },
   module: {
     rules: [
       {
