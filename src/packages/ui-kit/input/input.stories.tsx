@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof Input> = ({
   error,
   leftIcon,
   rightIcon,
+  value,
   onFocus,
   onBlur,
 }: InputProps) => (
@@ -23,6 +24,7 @@ const Template: ComponentStory<typeof Input> = ({
     label={label}
     name={name}
     type={type}
+    value={value}
     error={error}
     leftIcon={leftIcon}
     rightIcon={rightIcon}
