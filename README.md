@@ -2,13 +2,22 @@
 
 Projeto criado para realizar o teste técnico da vaga de frontend senior da empresa Webmotors
 
+# Links hospedado
+
+- Aplicação: https://adamdias.github.io/test-web/
+- Documentação do storybook: https://adamdias.github.io/test-web/docs/storybook
+
 ## Instalar as dependencias
 
 `yarn`
 
-## Executar em ambiente de desenvolvimento
+## Executar a aplicação em ambiente de desenvolvimento
 
 `yarn dev`
+
+## Executar a documentação em ambiente de desenvolvimento
+
+`yarn storybook`
 
 ## Tecnologias utilizadas
 
