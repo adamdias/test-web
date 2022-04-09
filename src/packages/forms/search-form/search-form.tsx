@@ -209,6 +209,10 @@ const SearchForm = ({
       onSubmit={event => {
         handleSubmit(event);
       }}
+      onReset={() => {
+        handleLoadServiceMake();
+        resetSearchFormState();
+      }}
     >
       <div className="form-search__checkbox mb--1">
         <div className="mr--3">
