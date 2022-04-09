@@ -11,6 +11,11 @@
     justify-content: center;
     border-bottom: 0.2rem solid $gray;
     padding: 1rem 2rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $gray-opactity;
+    }
 
     &--active {
       border-bottom: 0.4rem solid $red;
