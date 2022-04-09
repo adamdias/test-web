@@ -9,7 +9,7 @@
   border: 0;
   cursor: pointer;
 
-  &-outline {
+  &--outline {
     background-color: $white;
     border: 0.15rem solid $orange;
     color: $orange;
@@ -20,12 +20,24 @@
     }
   }
 
-  &-primary {
+  &--primary {
     color: $white;
     background-color: $red;
 
     &:hover {
       background-color: $red-opacity;
+    }
+  }
+
+  &--link {
+    color: $gray;
+    background-color: transparent;
+    span {
+      font-weight: 400;
+    }
+
+    &:hover {
+      background-color: $gray-light;
     }
   }
 }
