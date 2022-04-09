@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { SelectProps } from "./select.types";
 
 import "../input/input.styles.scss";
@@ -21,6 +21,9 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref
   ) => {
+    const [focused, setFocused] = useState<boolean>(false);
+
+    const focusedCssClass = focused ? " input__box--focused" : "";
     const errorCssClass = error ? " input__box--error" : "";
     const disabledCssClass = disabled ? " select__label--disabled" : "";
     const withoutBorderRadiusLeftCssClass = withoutBorderRadiusLeft
@@ -36,7 +39,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         htmlFor={name}
       >
         <div
-          className={`input__box${withoutBorderRadiusLeftCssClass}${withoutBorderRadiusRightCssClass}${errorCssClass}`}
+          className={`input__box${focusedCssClass}${withoutBorderRadiusLeftCssClass}${withoutBorderRadiusRightCssClass}${errorCssClass}`}
         >
           <div className="input__box--left-side">
             <span>{label}</span>
@@ -50,13 +53,21 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               id={name}
               name={name}
               className="select__field input__field"
-              onChange={e => {
+              onChange={event => {
                 if (state && setState) {
-                  setState({ ...state, [e.target.name]: e.target.value });
+                  setState({
+                    ...state,
+                    [event.target.name]: {
+                      ...state[event.target.name],
+                      value: event.target.value,
+                    },
+                  });
                 }
               }}
               defaultValue={defaultValue}
               disabled={disabled}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
             >
               {options.map(option => (
                 <option
