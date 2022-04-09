@@ -1,20 +1,21 @@
 {
   "name": "webmotors",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "git@github.com:adamdias/webmotors.git",
+  "homepage": "https://adamdias.github.io/test-web",
   "author": "Adam Dias <adam.dias@outlook.com>",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
     "prepare": "husky install",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
     "test:ci": "yarn test --coverage",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build": "webpack --config webpack.prod.js && yarn build:storybook",
+    "build:storybook": "chmod -R 777 dist && build-storybook -o ./dist/docs/storybook",
+    "deploy": "yarn build && gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",

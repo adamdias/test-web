@@ -30,12 +30,6 @@ module.exports = merge(common, {
       },
     ],
   },
-  externals: {
-    react: "React",
-    axios: "axios",
-    recoil: "Recoil",
-    "react-dom": "ReactDOM",
-  },
   plugins: [
     new DefinePlugin({
       "process.env.API_URL": JSON.stringify(
