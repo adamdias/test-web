@@ -16,18 +16,28 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       options,
       state,
       setState,
+      withoutBorderRadiusLeft,
+      withoutBorderRadiusRight,
     },
     ref
   ) => {
     const errorCssClass = error ? " input__box--error" : "";
     const disabledCssClass = disabled ? " select__label--disabled" : "";
+    const withoutBorderRadiusLeftCssClass = withoutBorderRadiusLeft
+      ? " input__box--without-radius-left"
+      : "";
+    const withoutBorderRadiusRightCssClass = withoutBorderRadiusRight
+      ? " input__box--without-radius-right"
+      : "";
 
     return (
       <label
         className={`input__label select__label${disabledCssClass}`}
         htmlFor={name}
       >
-        <div className={`input__box${errorCssClass}`}>
+        <div
+          className={`input__box${withoutBorderRadiusLeftCssClass}${withoutBorderRadiusRightCssClass}${errorCssClass}`}
+        >
           <div className="input__box--left-side">
             <span>{label}</span>
           </div>
