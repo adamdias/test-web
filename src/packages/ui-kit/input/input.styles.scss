@@ -16,6 +16,17 @@
     border-radius: 0.5rem;
     border: 0.1rem solid $gray;
 
+    &--without-radius-left {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &--without-radius-right {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      border-right: 0;
+    }
+
     &--left-side {
       display: flex;
       align-items: center;
@@ -27,7 +38,7 @@
     }
 
     &--error {
-      border-color: $red;
+      border: 0.1rem solid $red;
     }
   }
 
@@ -38,15 +49,22 @@
     background-color: $white;
     border: none;
     outline: none;
+    padding: 0.1rem 0;
   }
 
   &__icon {
+    border: 0;
+
     &--left {
       margin-right: 1rem;
     }
 
     &--right {
       margin-left: 1rem;
+    }
+
+    &--cursor-pointer {
+      cursor: pointer;
     }
   }
 

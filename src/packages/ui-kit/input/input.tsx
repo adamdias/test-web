@@ -11,6 +11,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       name,
       type,
       error,
+      value,
       onBlur,
       onFocus,
       onChange,
@@ -18,6 +19,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       setState,
       leftIcon,
       rightIcon,
+      withoutBorderRadiusLeft,
+      withoutBorderRadiusRight,
     },
     ref
   ) => {
@@ -32,7 +35,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onFocus(event);
         }
       },
-      [onFocus]
+      [onFocus, state]
     );
 
     const handleOnChange = useCallback(
@@ -40,7 +43,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         if (state && setState) {
           setState({
             ...state,
-            [event.currentTarget.name]: event.currentTarget.value,
+            [event.currentTarget.name]: {
+              ...state[event.currentTarget.name],
+              value: event.currentTarget.value,
+            },
           });
         }
 
@@ -64,20 +70,34 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const focusedCssClass = focused ? " input__box--focused" : "";
     const errorCssClass = error ? " input__box--error" : "";
+    const withoutBorderRadiusLeftCssClass = withoutBorderRadiusLeft
+      ? " input__box--without-radius-left"
+      : "";
+    const withoutBorderRadiusRightCssClass = withoutBorderRadiusRight
+      ? " input__box--without-radius-right"
+      : "";
 
     return (
       <label className="input__label" htmlFor={name}>
-        <div className={`input__box${focusedCssClass}${errorCssClass}`}>
+        <div
+          className={`input__box${focusedCssClass}${withoutBorderRadiusLeftCssClass}${withoutBorderRadiusRightCssClass}${errorCssClass}`}
+        >
           <div className="input__box--left-side">
             {leftIcon && leftIcon.color && leftIcon.name && (
-              <div className="input__icon input__icon--left">
+              <button
+                type="button"
+                className={`input__icon input__icon--left ${
+                  leftIcon.cursorPointer && "input__icon--cursor-pointer"
+                }`}
+                onClick={leftIcon.onClick && leftIcon.onClick}
+              >
                 <GetIconByName
                   name={leftIcon.name}
                   width={16}
                   height={16}
                   color={leftIcon.color}
                 />
-              </div>
+              </button>
             )}
             <span>{label}</span>
           </div>
@@ -87,6 +107,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className="input__field"
             type={type}
             name={name}
+            value={value}
             ref={ref}
             readOnly
             onFocus={handleOnFocus}
@@ -95,14 +116,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
 
           {rightIcon && rightIcon.color && rightIcon.name && (
-            <div className="input__icon input__icon--right">
+            <button
+              type="button"
+              className={`input__icon input__icon--right ${
+                rightIcon.cursorPointer && "input__icon--cursor-pointer"
+              }`}
+              onClick={rightIcon.onClick && rightIcon.onClick}
+            >
               <GetIconByName
                 name={rightIcon.name}
                 width={16}
                 height={16}
                 color={rightIcon.color}
               />
-            </div>
+            </button>
           )}
         </div>
 
