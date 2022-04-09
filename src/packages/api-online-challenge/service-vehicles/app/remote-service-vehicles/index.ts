@@ -1,1 +1,1 @@
-export * from "./remote-service-vehicles";
+export * from "./remote-service-vehicles.factories";
