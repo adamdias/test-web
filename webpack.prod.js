@@ -38,7 +38,7 @@ module.exports = merge(common, {
     }),
     new WebpackFavicons({
       src: "./public/favicon.jpg",
-      path: "img",
+      path: "favicon",
       background: "#FFFFFF",
       theme_color: "#FFFFFF",
       icons: {
