@@ -1,0 +1,26 @@
+.form-search {
+  &__checkbox {
+    display: flex;
+  }
+
+  &__row {
+    display: flex;
+  }
+
+  &__double-input {
+    display: flex;
+  }
+
+  &__w-80 {
+    width: 80%;
+  }
+
+  &__w-50 {
+    width: 50%;
+    display: flex;
+  }
+
+  &__w-20 {
+    width: 20%;
+  }
+}
