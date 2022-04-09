@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { SearchFormState } from "./search-form.types";
+import { SearchFormState } from "../search-form.types";
 
 export const searchFormState = atom({
   key: "searchFormState",

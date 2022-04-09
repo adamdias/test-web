@@ -1,15 +1,21 @@
 import React, { useCallback, useEffect } from "react";
 import { useRecoilState, useResetRecoilState } from "recoil";
+import { Button } from "@/packages/ui-kit/button";
 import { Checkbox } from "@/packages/ui-kit/checkbox";
 import { Input } from "@/packages/ui-kit/input";
 import { Select } from "@/packages/ui-kit/select";
-
-import { Button } from "@/packages/ui-kit/button";
-import { searchFormState } from "./search-form.states";
-import { makeSearchFormValidator } from "./search-form.factories";
+import { searchFormState } from "./atoms/search-form-state";
+import {
+  makeSearchFormValidate,
+  makeRemoteServiceMake,
+  makeRemoteServiceModel,
+  makeRemoteServiceVersion,
+  makeSearchFormSubmit,
+} from "./factories";
+import { SearchFormProps } from "./search-form.types";
+import { selectKmMock, selectPriceMock, selectYearMock } from "./mocks";
 
 import "./search-form.styles.scss";
-import { SearchFormProps } from "./search-form.types";
 
 const SearchForm = ({
   loadServiceMake,
@@ -17,132 +23,41 @@ const SearchForm = ({
   loadServiceVersion,
   loadServiceVehicles,
 }: SearchFormProps) => {
-  const validator = makeSearchFormValidator();
   const resetSearchFormState = useResetRecoilState(searchFormState);
   const [state, setState] = useRecoilState(searchFormState);
 
-  const validate = useCallback(
-    (field: string, onSubmit = false): void => {
-      const { location, km } = state;
-      const formData = { location, km };
-
-      const fieldError = validator.validate(field, formData);
-
-      setState(old => ({
-        ...old,
-        [`${field}Error`]: onSubmit
-          ? fieldError
-          : state[field] !== undefined
-          ? fieldError
-          : undefined,
-        [`${field}ErrorOnLoad`]: fieldError,
-      }));
-
-      setState(old => ({
-        ...old,
-        isFormInvalid: !!old.locationErrorOnLoad || !!old.kmErrorOnLoad,
-      }));
-    },
+  const handleValidate = useCallback(
+    (field: string, onSubmit = false): void =>
+      makeSearchFormValidate({ setState, state, field, onSubmit }),
     [state]
   );
 
-  const handleLoadServiceMake = useCallback(async () => {
-    try {
-      setState(old => ({
-        ...old,
-        serviceMake: {
-          isLoading: true,
-          results: [],
-        },
-      }));
+  const handleLoadServiceMake = useCallback(
+    () => makeRemoteServiceMake({ setState, loadServiceMake }),
+    []
+  );
 
-      const results = await loadServiceMake.loadAll();
+  const handleLoadServiceModel = useCallback(
+    () => makeRemoteServiceModel({ setState, state, loadServiceModel }),
+    [state.make]
+  );
 
-      setState(old => ({
-        ...old,
-        serviceMake: {
-          isLoading: false,
-          results,
-        },
-        make: String(results[0].ID),
-      }));
-    } catch (err) {
-      setState(old => ({
-        ...old,
-        serviceMake: {
-          ...old.serviceMake,
-          isLoading: false,
-        },
-      }));
-    }
-  }, []);
+  const handleLoadServiceVersion = useCallback(
+    () => makeRemoteServiceVersion({ setState, state, loadServiceVersion }),
+    [state.model]
+  );
 
-  const handleLoadServiceModel = useCallback(async () => {
-    try {
-      setState(old => ({
-        ...old,
-        serviceModel: {
-          isLoading: true,
-          results: [],
-        },
-      }));
-
-      const results = await loadServiceModel.loadAll({
-        MakeID: Number(state.make),
-      });
-
-      setState(old => ({
-        ...old,
-        serviceModel: {
-          isLoading: false,
-          results,
-        },
-        model: String(results[0].ID),
-      }));
-    } catch (err) {
-      setState(old => ({
-        ...old,
-        serviceModel: {
-          ...old.serviceModel,
-          isLoading: false,
-        },
-      }));
-    }
-  }, [state.make]);
-
-  const handleLoadServiceVersion = useCallback(async () => {
-    try {
-      setState(old => ({
-        ...old,
-        serviceVersion: {
-          isLoading: true,
-          results: [],
-        },
-      }));
-
-      const results = await loadServiceVersion.loadAll({
-        ModelID: Number(state.model),
-      });
-
-      setState(old => ({
-        ...old,
-        serviceVersion: {
-          isLoading: false,
-          results,
-        },
-        version: String(results[0].ID),
-      }));
-    } catch (err) {
-      setState(old => ({
-        ...old,
-        serviceVersion: {
-          ...old.serviceVersion,
-          isLoading: false,
-        },
-        version: undefined,
-      }));
-    }
-  }, [state.model]);
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) =>
+      makeSearchFormSubmit({
+        event,
+        validate: handleValidate,
+        state,
+        setState,
+        loadServiceVehicles,
+      }),
+    [state]
+  );
 
   useEffect(() => {
     resetSearchFormState();
@@ -161,54 +76,13 @@ const SearchForm = ({
     }
   }, [state.model]);
 
-  useEffect(() => validate("location"), [state.location]);
-  useEffect(() => validate("km"), [state.km]);
-
-  const handleSubmit = useCallback(
-    async event => {
-      try {
-        event.preventDefault();
-
-        validate("location", true);
-        validate("km", true);
-
-        if (state.isFormInvalid) {
-          return;
-        }
-
-        setState(old => ({
-          ...old,
-          serviceVehicles: {
-            isLoading: true,
-            results: [],
-          },
-        }));
-
-        const results = await loadServiceVehicles.loadAll({ Page: 1 });
-
-        setState(old => ({
-          ...old,
-          serviceVehicles: {
-            isLoading: false,
-            results,
-          },
-        }));
-      } catch (err) {
-        setState(old => ({
-          ...old,
-          mainError: "Aconteceu um erro inesperado, tente novamente mais tarde",
-        }));
-      }
-    },
-    [state]
-  );
+  useEffect(() => handleValidate("location"), [state.location]);
+  useEffect(() => handleValidate("km"), [state.km]);
 
   return (
     <form
       className="form-search"
-      onSubmit={event => {
-        handleSubmit(event);
-      }}
+      onSubmit={handleSubmit}
       onReset={() => {
         handleLoadServiceMake();
         resetSearchFormState();
@@ -260,24 +134,7 @@ const SearchForm = ({
               state={state}
               setState={setState}
               defaultValue={25}
-              options={[
-                {
-                  label: "10km",
-                  value: 10,
-                },
-                {
-                  label: "25km",
-                  value: 25,
-                },
-                {
-                  label: "50km",
-                  value: 50,
-                },
-                {
-                  label: "100km",
-                  value: 100,
-                },
-              ]}
+              options={selectKmMock}
             />
           </div>
         </div>
@@ -289,7 +146,10 @@ const SearchForm = ({
               name="make"
               state={state}
               loading={state.serviceMake.isLoading}
-              disabled={state.serviceMake.results.length <= 0}
+              disabled={
+                state.serviceMake.isLoading ||
+                state.serviceMake.results.length <= 0
+              }
               setState={setState}
               options={state.serviceMake.results.map(({ Name, ID }) => {
                 return { label: Name, value: ID };
@@ -304,7 +164,10 @@ const SearchForm = ({
               state={state}
               setState={setState}
               loading={state.serviceModel.isLoading}
-              disabled={state.serviceModel.results.length <= 0}
+              disabled={
+                state.serviceModel.isLoading ||
+                state.serviceModel.results.length <= 0
+              }
               options={state.serviceModel.results.map(({ Name, ID }) => {
                 return { label: Name, value: ID };
               })}
@@ -322,28 +185,7 @@ const SearchForm = ({
               state={state}
               setState={setState}
               defaultValue="all"
-              options={[
-                {
-                  label: "Todos",
-                  value: "all",
-                },
-                {
-                  label: "2010",
-                  value: 2010,
-                },
-                {
-                  label: "2011",
-                  value: 2011,
-                },
-                {
-                  label: "2012",
-                  value: 2012,
-                },
-                {
-                  label: "2013",
-                  value: 2013,
-                },
-              ]}
+              options={selectYearMock}
             />
           </div>
 
@@ -354,24 +196,7 @@ const SearchForm = ({
               state={state}
               setState={setState}
               defaultValue="10000"
-              options={[
-                {
-                  label: "R$0,00 até R$5.000,00",
-                  value: 5000,
-                },
-                {
-                  label: "R$5.000,00 até R$10.000,00",
-                  value: 10000,
-                },
-                {
-                  label: "R$10.000,00 até R$25.000,00",
-                  value: 25000,
-                },
-                {
-                  label: "R$25.000,00+",
-                  value: 300000,
-                },
-              ]}
+              options={selectPriceMock}
             />
           </div>
         </div>
@@ -382,7 +207,10 @@ const SearchForm = ({
             state={state}
             setState={setState}
             loading={state.serviceVersion.isLoading}
-            disabled={state.serviceVersion.results.length <= 0}
+            disabled={
+              state.serviceVersion.isLoading ||
+              state.serviceVersion.results.length <= 0
+            }
             options={state.serviceVersion.results.map(({ Name, ID }) => {
               return { label: Name, value: ID };
             })}

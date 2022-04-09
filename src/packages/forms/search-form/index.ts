@@ -1,4 +1,4 @@
 import SearchForm from "./search-form";
-import { searchFormState } from "./search-form.states";
+import { searchFormState } from "./atoms/search-form-state";
 
 export { SearchForm, searchFormState };
