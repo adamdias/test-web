@@ -6,3 +6,9 @@ $gray: #acacac;
 $gray-light: #f1f1f1;
 $orange: #e89847;
 $orange-opacity: rgba(232, 152, 71, 0.8);
+
+.cl {
+  &--red {
+    color: $red;
+  }
+}
