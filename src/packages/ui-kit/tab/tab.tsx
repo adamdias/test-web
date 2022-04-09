@@ -8,10 +8,10 @@ const Tab = ({ options }: TabProps) => {
   if (options) {
     return (
       <div className="tab">
-        {options.map(option => (
+        {options.map((option, index) => (
           <button
             type="button"
-            key={option.title}
+            key={`tab-option-${index}`}
             className={`tab__option${
               option.active ? " tab__option--active" : ""
             }`}
