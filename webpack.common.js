@@ -5,7 +5,7 @@ module.exports = {
   entry: "./src/core/index.tsx",
   output: {
     path: path.join(__dirname, "dist"),
-    filename: "main-bundle-[hash].js",
+    filename: "main-bundle-[chunkhash].js",
     publicPath: "/",
   },
   resolve: {
