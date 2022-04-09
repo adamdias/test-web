@@ -35,7 +35,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onFocus(event);
         }
       },
-      [onFocus, state]
+      [onFocus]
     );
 
     const handleOnChange = useCallback(
