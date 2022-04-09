@@ -48,7 +48,8 @@
     "no-param-reassign": "off",
     "no-nested-ternary": "off",
     "react/button-has-type": "off",
-    "jsx-a11y/alt-text": "off"
+    "jsx-a11y/alt-text": "off",
+    "react/no-array-index-key": "off"
   },
   "settings": {
     "import/resolver": {
