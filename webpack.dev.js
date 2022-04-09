@@ -1,6 +1,6 @@
 const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const WebpackFavicons = require("webpack-favicons");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common");
 
@@ -49,8 +49,14 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
-    new FaviconsWebpackPlugin({
-      logo: "./public/favicon.jpg",
+    new WebpackFavicons({
+      src: "./public/favicon.jpg",
+      path: "img",
+      background: "#FFFFFF",
+      theme_color: "#FFFFFF",
+      icons: {
+        favicons: true,
+      },
     }),
   ],
 });

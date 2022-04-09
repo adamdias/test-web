@@ -1,7 +1,7 @@
 const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const WebpackFavicons = require("webpack-favicons");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common");
 
@@ -35,7 +35,6 @@ module.exports = merge(common, {
     axios: "axios",
     recoil: "Recoil",
     "react-dom": "ReactDOM",
-    "react-router-dom": "ReactRouterDOM",
   },
   plugins: [
     new DefinePlugin({
@@ -43,14 +42,20 @@ module.exports = merge(common, {
         "https://desafioonline.webmotors.com.br/api/OnlineChallenge"
       ),
     }),
+    new WebpackFavicons({
+      src: "./public/favicon.jpg",
+      path: "img",
+      background: "#FFFFFF",
+      theme_color: "#FFFFFF",
+      icons: {
+        favicons: true,
+      },
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: "main-bundle-[hash].css",
-    }),
-    new FaviconsWebpackPlugin({
-      logo: "./public/favicon.jpg",
+      filename: "main-bundle-[chunkhash].css",
     }),
   ],
 });
