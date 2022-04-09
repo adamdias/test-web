@@ -26,7 +26,7 @@ export const makeRemoteServiceVersion = async ({
     }));
 
     const results = await loadServiceVersion.loadAll({
-      ModelID: Number(state.model),
+      ModelID: Number(state.model.value),
     });
 
     setState(old => ({
@@ -35,7 +35,7 @@ export const makeRemoteServiceVersion = async ({
         isLoading: false,
         results,
       },
-      version: String(results[0].ID),
+      version: { value: String(results[0].ID) },
     }));
   } catch (err) {
     setState(old => ({

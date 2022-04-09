@@ -30,7 +30,7 @@ export const makeRemoteServiceModel = async ({
     }));
 
     const results = await loadServiceModel.loadAll({
-      MakeID: Number(state.make),
+      MakeID: Number(state.make.value),
     });
 
     setState(old => ({
@@ -43,7 +43,7 @@ export const makeRemoteServiceModel = async ({
         results: [],
         isLoading: false,
       },
-      model: String(results[0].ID),
+      model: { value: String(results[0].ID) },
     }));
   } catch (err) {
     setState(old => ({

@@ -33,11 +33,21 @@ export const searchFormState = atom({
     isFormInvalid: true,
     newState: true,
     usedState: true,
-    year: "all",
-    price: "10000",
-    make: "",
-    model: "",
-    version: "",
+    year: {
+      value: "all",
+    },
+    price: {
+      value: "10000",
+    },
+    make: {
+      value: "",
+    },
+    model: {
+      value: "",
+    },
+    version: {
+      value: "",
+    },
     mainError: "",
   } as SearchFormState,
 });

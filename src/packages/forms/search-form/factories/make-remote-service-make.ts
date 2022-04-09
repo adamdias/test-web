@@ -39,7 +39,7 @@ export const makeRemoteServiceMake = async ({
         isLoading: false,
         results: [],
       },
-      make: String(results[0].ID),
+      make: { value: String(results[0].ID) },
     }));
   } catch (err) {
     setState(old => ({

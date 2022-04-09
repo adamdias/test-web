@@ -32,14 +32,14 @@ export const makeSearchFormValidate = ({
   const formData = { location: location.value, km: km.value };
   const fieldError = validator.validate(field, formData);
 
-  setState({
-    ...state,
+  setState(old => ({
+    ...old,
     [`${field}`]: {
-      ...state[`${field}`],
+      ...old[`${field}`],
       error: fieldError || "",
-      errorIsVisible: state[`${field}`].errorIsVisible || errorIsVisible,
+      errorIsVisible: old[`${field}`].errorIsVisible || errorIsVisible,
     },
-  });
+  }));
 
   setState(old => ({
     ...old,

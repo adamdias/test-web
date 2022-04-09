@@ -40,10 +40,20 @@ export type SearchFormState = {
     errorIsVisible: boolean;
     error: string;
   };
-  year: string;
-  price: string;
-  make: string;
-  model: string;
-  version: string;
+  year: {
+    value: string;
+  };
+  price: {
+    value: string;
+  };
+  make: {
+    value: string;
+  };
+  model: {
+    value: string;
+  };
+  version: {
+    value: string;
+  };
   mainError: string;
 };
