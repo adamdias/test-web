@@ -12,7 +12,8 @@ export default {
 const Template: ComponentStory<typeof Checkbox> = ({
   label,
   name,
-}: CheckboxProps) => <Checkbox label={label} name={name} />;
+  checked,
+}: CheckboxProps) => <Checkbox label={label} name={name} checked={checked} />;
 
 export const Normal = Template.bind({});
 
