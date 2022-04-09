@@ -93,6 +93,7 @@ const SearchForm = ({
           <Checkbox
             label="Novos"
             name="newState"
+            checked
             state={state}
             setState={setState}
           />
@@ -100,6 +101,7 @@ const SearchForm = ({
         <Checkbox
           label="Usados"
           name="usedState"
+          checked
           state={state}
           setState={setState}
         />
