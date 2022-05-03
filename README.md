@@ -1,6 +1,6 @@
-# Webmotors
+# Teste
 
-Projeto criado para realizar o teste técnico da vaga de frontend senior da empresa Webmotors
+Projeto criado para realizar o teste técnico da vaga de fronted
 
 # Links hospedado
 
